@@ -1,0 +1,19 @@
+from commands import *
+from interpreter import *
+
+
+def main():
+    input_str = input()
+    input_val = {'str': input_str, 'steps': 0, 'results': {}}
+    lexer_create(input_val)
+    parser_create(input_val)
+    input_val['commands_pos'] = 0
+    input_val['command'] = list()
+    input_val['sub_command'] = {}
+    while input_val['commands_pos'] < len(input_val['token']):
+        input_val['command'].extend(commands_brace_parse(input_val))
+    interpreter_create(input_val)
+
+
+if __name__ == "__main__":
+    main()
